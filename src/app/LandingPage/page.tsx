@@ -1,7 +1,7 @@
 import Navbar from "./Navbar";
 import Hero from "./Hero";
 
-export default function LandingPage() {
+export default function page() {
   return (
     <>
     <Navbar/>
