@@ -11,5 +11,6 @@ export default function Home() {
         <SearchMainPage /> 
         <MidMainPage /> 
       </div>
+    </div>
   );
 }
