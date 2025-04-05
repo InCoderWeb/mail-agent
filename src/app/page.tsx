@@ -1,6 +1,6 @@
 import MidMainPage from "./middlepanel/MidMainPage";
 import SearchMainPage from "./SearchBar/SearchMainPage";
-import AppSideMain from "./sidepanel/AppSideMain";
+import  AppSideMain  from "./sidepanel/AppSideMain";
 
 export default function Home() {
   return (

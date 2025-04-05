@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@reference "./globals.css"
+
+
+.btn-category {
+    @apply border-2 p-2 rounded-lg cursor-pointer 
+           hover:bg-gray-200 hover:!bg-[#810cab] hover:!text-white;
+}
+
+  
