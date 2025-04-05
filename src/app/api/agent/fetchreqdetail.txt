@@ -1,0 +1,50 @@
+Steps for chatbot:
+    1. Before sending the message to the agent you have to start up the chatbot by sending a request to:
+        /api/agent
+        and using this code :
+        '''
+        const res: ResponseJson = await fetch("/api/agent", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                status: "start"
+            })
+        }).then((res) => res.json());
+        '''
+        the body with a status: "start" is a must.
+        - Doing this we will recieve a response in this format:
+        {
+            status: 200,
+            thread: threadId
+        } 
+        (Storing the thread is a must!)
+        or (in case of an error):
+        {
+            status: 400
+        } 
+    2. Now you can send messages to the agent to the same request (/api/agent) but in this format: 
+        '''
+        const res: ResponseJson = await fetch("/api/agent", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                status: "send",
+                thread: thread,
+                message: tempMsg
+            })
+        }).then((res) => res.json());
+        '''
+        The body is a must and the keys should be exactly the same.
+        Doing this you will get a response in this format: 
+        {
+            status: 200,
+            reply: "Some String"
+        }
+        or (in case of an error):
+        {
+            status: 400
+        }
