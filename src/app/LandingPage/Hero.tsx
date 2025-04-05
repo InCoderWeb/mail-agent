@@ -2,7 +2,7 @@
 
 const Hero = () => {
   return (
-    <section className="relative h-screen flex flex-col justify-center items-center text-center px-6 bg-[#0D0D0D] text-[#F5F5F5] pt-20">
+    <section className="relative w-screen h-screen overflow-hidden flex flex-col justify-center items-center text-center px-6 bg-[#0D0D0D] text-[#F5F5F5] pt-20">
       <h1 className="text-5xl md:text-7xl font-bold">
         AI-powered <span className="text-[#810CAB]">Email Automation</span>
       </h1>
