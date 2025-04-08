@@ -1,20 +1,17 @@
 'use client';
 import Navbar from "./Navbar";
 import Hero from "./Hero";
+import Features from "./Features";
+import Contact from "./Contact";
 
-
-import dynamic from "next/dynamic";
-
-// const Hero = dynamic(() => import("./Hero"), {
-//   ssr: false,
-// });
 
 export default function page() {
   return (
     <>
     <Navbar/>
       <Hero/>
-      
+      <Features />
+      <Contact />
     </>
   );
 }
