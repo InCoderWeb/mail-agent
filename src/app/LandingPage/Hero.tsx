@@ -1,17 +1,15 @@
-'use client';
+"use client";
 
 import BlurText from "../../components/BlurText/BlurText";
 import Particles from "../../components/Particles/Particles";
 import StarBorder from "../../components/StarBorder/StarBorder";
 
-
 const Hero = () => {
   return (
     <section className="relative w-screen h-screen overflow-hidden flex flex-col justify-center items-center text-center px-6 bg-[#0D0D0D] text-[#F5F5F5] pt-20">
-      {/* 👇 Background Particles */}
       <div className="absolute top-0 left-0 w-full h-full z-0">
         <Particles
-          particleColors={['#ffffff', '#ffffff']}
+          particleColors={["#ffffff", "#ffffff"]}
           particleCount={200}
           particleSpread={10}
           speed={0.1}
@@ -22,7 +20,6 @@ const Hero = () => {
         />
       </div>
 
-      {/* 👇 Foreground Content */}
       <div className="relative z-10">
         <BlurText
           text=" AI-powered Email Automation"
@@ -44,4 +41,4 @@ const Hero = () => {
   );
 };
 
-export default Hero; 
+export default Hero;

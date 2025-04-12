@@ -1,22 +1,14 @@
 "use client";
+
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
-
 import StarBorder from "../../components/StarBorder/StarBorder";
 
-const Navbar = () => {
+export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
-
-  const handleClose = () => {
-    setIsClosing(true);
-    setTimeout(() => {
-      setMenuOpen(false);
-      setIsClosing(false);
-    }, 300);
-  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,79 +18,98 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleClose = () => {
+    setIsClosing(true);
+    setTimeout(() => {
+      setMenuOpen(false);
+      setIsClosing(false);
+    }, 300);
+  };
+
   return (
     <nav
       className={`fixed top-4 left-0 right-0 z-50 transition-all duration-300 px-4 md:px-6 ${
         isScrolled ? "scale-[0.98]" : ""
       }`}
     >
-      <div className="max-w-7xl mx-auto w-full flex justify-between items-center">
-        {/* Left: Logo */}
+      <div className="max-w-7xl mx-auto w-full flex justify-between md:justify-center items-center">
+        {/* Mobile: Logo (visible only on mobile) */}
         <Link
           href="/"
-          className="flex items-center gap-2 text-2xl font-bold text-[#F5F5F5] hover:text-[#810CAB] transition-all"
+          className="md:hidden flex items-center gap-2 text-xl font-semibold text-[#F5F5F5] hover:text-[#810CAB] transition-all"
         >
           <img
-            width="36"
-            height="36"
+            width="30"
+            height="30"
             src="https://img.icons8.com/lollipop/48/message-bot.png"
             alt="message-bot"
           />
           <span>Email Agent</span>
         </Link>
 
-        {/* Center Nav */}
-        <div className="hidden md:flex bg-[#1A1A1A]/80 backdrop-blur-md border mt-2 border-[#333] rounded-full px-10 py-3 shadow-lg">
-          <ul className="flex space-x-8 text-[#F5F5F5]">
-          {["Home", "Features", "Contact"].map((item) => (
-  <li key={item} className="group relative">
-    <Link
-      href={item === "Home" ? "/" : `#${item.toLowerCase()}`}
-      scroll={true}
-      className="text-lg font-medium transition-all duration-300 hover:text-[#810CAB] hover:tracking-wider"
-    >
-      <span className="relative inline-block">
-        {item}
-        <span className="absolute left-0 -bottom-1 h-0.5 bg-[#810CAB] transition-all duration-300 w-0 group-hover:w-full" />
-      </span>
-    </Link>
-  </li>
-))}
+        {/* Centered Pill with Everything */}
+        <div className="hidden md:flex items-center justify-center bg-[#1A1A1A]/80 backdrop-blur-md border-2 mt-2 border-[#444] rounded-full px-8 py-2 shadow-lg space-x-12">
+          {/* Logo and Title */}
+          <Link
+            href="/"
+            className="flex items-center gap-2 text-lg font-semibold text-[#F5F5F5] hover:text-[#810CAB] transition-all"
+          >
+            <img
+              width="30"
+              height="30"
+              src="https://img.icons8.com/lollipop/48/message-bot.png"
+              alt="message-bot"
+            />
+            <span>Email Agent</span>
+          </Link>
 
+          {/* Navigation Links */}
+          <ul className="flex items-center gap-4 text-[#F5F5F5]">
+            {["Home", "Features", "Contact"].map((item) => (
+              <li key={item} className="group relative">
+                <Link
+                  href={item === "Home" ? "/" : `#${item.toLowerCase()}`}
+                  scroll={true}
+                  className="text-base transition-all duration-300 hover:text-[#810CAB] hover:tracking-wide"
+                >
+                  <span className="relative inline-block">
+                    {item}
+                    <span className="absolute left-0 -bottom-1 h-0.5 bg-[#810CAB] transition-all duration-300 w-0 group-hover:w-full" />
+                  </span>
+                </Link>
+              </li>
+            ))}
           </ul>
-        </div>
 
-        {/* Right: Log in + Hamburger */}
-        <div className="flex items-center gap-4">
+          {/* Login Button (smaller) */}
           <StarBorder
             as="button"
-            className="custom-class rounded-full text-sm px-4 py-1 md:px-6 md:py-2 md:text-base"
+            className="custom-class rounded-full text-xs px-3 py-1 md:px-4 md:py-1.5"
             color="white"
             speed="3s"
           >
             Log in
           </StarBorder>
+        </div>
 
-          {/* Hamburger Button */}
-          <button
-            className="md:hidden text-white cursor-pointer"
-            onClick={() => setMenuOpen(!menuOpen)}
-          >
+        {/* Mobile: Hamburger (Login now in side panel) */}
+        <div className="flex md:hidden items-center gap-4">
+          <button className="text-white cursor-pointer" onClick={() => setMenuOpen(!menuOpen)}>
             {menuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Dropdown */}
+      {/* Mobile Menu */}
       {menuOpen && (
         <div className="fixed inset-0 z-50 flex">
           <div
-            className={`w-[65%] max-w-[260px] bg-[#2A2A2A]/90 backdrop-blur-md p-6 flex flex-col justify-center shadow-lg ${
+            className={`w-[70%] max-w-[280px] bg-[#2A2A2A]/90 backdrop-blur-md p-6 flex flex-col justify-between shadow-lg ${
               isClosing ? "animate-slide-out" : "animate-slide-in"
             }`}
           >
             <ul className="flex flex-col gap-6 text-white text-lg font-semibold">
-              {["Home", "Features", "About"].map((item) => (
+              {["Home", "Features", "Contact"].map((item) => (
                 <li key={item} className="group relative">
                   <Link
                     href={`#${item.toLowerCase()}`}
@@ -113,6 +124,17 @@ const Navbar = () => {
                 </li>
               ))}
             </ul>
+
+            {/* Mobile Login Button */}
+            <div className="mt-8">
+              <StarBorder
+                as="button"
+                className="w-full text-sm px-4 py-2 rounded-full bg-[#1A1A1A] hover:bg-[#810CAB] text-white transition"
+                color="inherit"
+              >
+                Log in
+              </StarBorder>
+            </div>
           </div>
 
           {/* Overlay */}
@@ -121,7 +143,4 @@ const Navbar = () => {
       )}
     </nav>
   );
-};
-
-export default Navbar;
-
+}
