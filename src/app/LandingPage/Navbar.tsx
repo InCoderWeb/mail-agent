@@ -102,7 +102,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="fixed inset-0 z-50 flex">
+        <div className="fixed inset-0 z-50 flex overflow-hidden">
           <div
             className={`w-[70%] max-w-[280px] bg-[#2A2A2A]/90 backdrop-blur-md p-6 flex flex-col justify-between shadow-lg ${
               isClosing ? "animate-slide-out" : "animate-slide-in"

@@ -67,7 +67,12 @@ const featuresData = [
   }
 ];
 
-const Features = () => {
+interface FeatureProps {
+  isMobile: boolean;
+}
+
+
+const Features = ({isMobile} : FeatureProps) => {
   return (
     <section className="relative z-10 pt-40 pb-70 md:pb-10">
       <div
@@ -75,12 +80,16 @@ const Features = () => {
         id="features"
       >
         <div className="w-full h-full absolute top-0 left-0 z-0 overflow-hidden">
-          <Threads
-            amplitude={1}
-            distance={0}
-            enableMouseInteraction={true}
-            color={[0.2, 0.6, 1]}
-          />
+          {
+            !isMobile && (
+              <Threads
+                amplitude={1}
+                distance={0}
+                enableMouseInteraction={true}
+                color={[0.2, 0.6, 1]}
+              />
+            )
+          }
         </div>
 
         <div className="absolute inset-0 z-10 flex flex-col items-center h-full text-center px-4 pointer-events-none">
@@ -88,7 +97,7 @@ const Features = () => {
             Our Features
           </h1>
           <p className="text-lg md:text-xl lg:text-2xl mt-2 md:mt-4 lg:mt-6 max-w-3xl mx-auto pointer-events-auto">
-            "Simplify your inbox, automate decisions, and reclaim your productivity with our intelligent email assistant."
+            &quot;Simplify your inbox, automate decisions, and reclaim your productivity with our intelligent email assistant.&quot;
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16 pointer-events-auto w-full md:max-w-5xl xs:max-w-xl px-4">
