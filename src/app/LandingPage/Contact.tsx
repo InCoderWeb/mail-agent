@@ -6,7 +6,7 @@ export default function ContactPage() {
     email: "",
     message: "",
   });
-
+  
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -16,8 +16,28 @@ export default function ContactPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Form Data:", formData);
-    // Here you can add SendGrid logic or form submit logic
+    fetch('/api/contact', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: formData.name,
+        email: formData.email,
+        message: formData.message
+      })
+    }).then((response) => {
+      if (response.ok) {
+        console.log("Email sent successfully!");
+      } else {
+        console.error("Error sending email.");
+      }
+    }
+    ).catch((error) => {
+      console.error("Error:", error);
+    });
   };
+
 
   return (
     <section id="contact" className="min-h-screen relative z-10 mt-80 md:mt-160 min-h-screen ">

@@ -102,7 +102,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="fixed inset-0 z-50 flex">
+        <div className="fixed inset-0  z-[9999] flex">
           <div
             className={`w-[70%] max-w-[280px] bg-[#2A2A2A]/90 backdrop-blur-md p-6 flex flex-col justify-between shadow-lg ${
               isClosing ? "animate-slide-out" : "animate-slide-in"
@@ -127,13 +127,14 @@ export default function Navbar() {
 
             {/* Mobile Login Button */}
             <div className="mt-8">
-              <StarBorder
-                as="button"
-                className="w-full text-sm px-4 py-2 rounded-full bg-[#1A1A1A] hover:bg-[#810CAB] text-white transition"
-                color="inherit"
-              >
-                Log in
-              </StarBorder>
+            <StarBorder
+            as="button"
+            className="custom-class rounded-full text-xs px-3 py-1 md:px-4 md:py-1.5"
+            color="white"
+            speed="3s"
+          >
+            Log in
+          </StarBorder>
             </div>
           </div>
 
