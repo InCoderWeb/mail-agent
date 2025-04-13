@@ -6,47 +6,57 @@ export default function ContactPage() {
     email: "",
     message: "",
   });
-  
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setFormData({
+      name: "",
+      email: "",
+      message: "",
+    });
+  
     console.log("Form Data:", formData);
+  
     fetch('/api/contact', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        name: formData.name,
-        email: formData.email,
-        message: formData.message
+      body: JSON.stringify(formData),
+    })
+      .then((response) => {
+        if (response.ok) {
+          console.log("Email sent successfully!");
+        } else {
+          console.error("Error sending email.");
+        }
       })
-    }).then((response) => {
-      if (response.ok) {
-        console.log("Email sent successfully!");
-      } else {
-        console.error("Error sending email.");
-      }
-    }
-    ).catch((error) => {
-      console.error("Error:", error);
-    });
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
-
+  
 
   return (
-    <section id="contact" className="min-h-screen relative z-10 mt-80 md:mt-160 min-h-screen ">
+    <section
+      id="contact"
+      className="min-h-screen relative z-10 mt-80 md:mt-160 min-h-screen "
+    >
       <div className="min-h-screen bg-[#1a1a1a] text-white flex items-center justify-center px-4">
         <div className="max-w-6xl w-full bg-[#101010] rounded-xl p-10 md:flex md:justify-between mt-20 mb-20">
           {/* Left Form */}
           <div className="md:w-1/2 mb-10 md:mb-0 ">
             <h1 className="text-3xl md:text-4xl font-semibold mb-2">
-              Have a <span className="text-[#810CAB]">question</span> or facing an issue? <br />
+              Have a <span className="text-[#810CAB]">question</span> or facing
+              an issue? <br />
               We’re here to <span className="text-[#810CAB]">help you!</span>
             </h1>
             <form onSubmit={handleSubmit} className="mt-8 space-y-6">
@@ -57,6 +67,7 @@ export default function ContactPage() {
                   name="name"
                   placeholder="John Doe"
                   onChange={handleChange}
+                  value={formData.name} 
                   className="w-full p-3 bg-[#1e1e1e] rounded-md border border-[#333] focus:outline-none focus:border-[#810CAB]"
                   required
                 />
@@ -68,6 +79,7 @@ export default function ContactPage() {
                   name="email"
                   placeholder="john@gmail.com"
                   onChange={handleChange}
+                  value={formData.email}
                   className="w-full p-3 bg-[#1e1e1e] rounded-md border border-[#333] focus:outline-none focus:border-[#810CAB]"
                   required
                 />
@@ -79,13 +91,14 @@ export default function ContactPage() {
                   rows={4}
                   placeholder="I have a problem using the Email Agent. Can you help me with..."
                   onChange={handleChange}
+                  value={formData.message}
                   className="w-full p-3 bg-[#1e1e1e] rounded-md border border-[#333] focus:outline-none focus:border-[#810CAB]"
                   required
                 />
               </div>
               <button
                 type="submit"
-                className="bg-[#810CAB] hover:bg-[#a14ddb] transition text-white font-medium px-6 py-3 rounded-full flex items-center gap-2"
+                className="bg-[#810CAB] hover:bg-[#a14ddb] transition text-white font-medium px-6 py-3 rounded-full flex items-center gap-2 cursor-pointer"
               >
                 <img
                   src="https://img.icons8.com/?size=100&id=93330&format=png&color=ffffff"

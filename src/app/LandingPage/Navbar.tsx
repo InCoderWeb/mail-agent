@@ -116,7 +116,7 @@ export default function Navbar() {
               {["Home", "Features", "Contact"].map((item) => (
                 <li key={item} className="group relative">
                   <Link
-                    href={#${item.toLowerCase()}}
+                    href={`#${item.toLowerCase()}`}
                     className="inline-block transition-all duration-300 hover:text-[#810CAB]"
                     onClick={handleClose}
                   >

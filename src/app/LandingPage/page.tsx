@@ -30,7 +30,7 @@ export default function Page() {
 
   }, []);
   return (
-    <div className="flex flex-col relative">
+    <div className="flex flex-col relative w-screen overflow-x-hidden">
       <Navbar />
       <Hero isMobile={isMobile} />
       <Features isMobile={isMobile} />

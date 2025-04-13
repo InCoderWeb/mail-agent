@@ -74,9 +74,9 @@ interface FeatureProps {
 
 const Features = ({isMobile} : FeatureProps) => {
   return (
-    <section className="relative z-10 pt-40 pb-70 md:pb-10">
+    <section className="relative z-10 pt-40 pb-70 md:pb-10 ">
       <div
-        className="bg-[#0D0D0D] text-white w-full min-h-screen overflow-visible relative mb-400 md:mb-0"
+        className="bg-[#0D0D0D] text-white w-full min-h-screen overflow-visible relative mb-400 md:mb-0 "
         id="features"
       >
         <div className="w-full h-full absolute top-0 left-0 z-0 overflow-hidden">
